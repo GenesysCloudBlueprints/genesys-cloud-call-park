@@ -1,0 +1,47 @@
+{
+  "name": "Update External Tag on Conversation",
+  "integrationType": "purecloud-data-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/api/v2/conversations/${input.conversationId}/tags",
+      "requestType": "PUT",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "requestTemplate": "{\n  \"externalTag\": \"${input.externalTag}\"\n}"
+    },
+    "response": {
+      "translationMap": {},
+      "translationMapDefaults": {},
+      "successTemplate": "${rawResult}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Update External Tag",
+        "description": "Updates a Single Row in a Data Table",
+        "type": "object",
+        "properties": {
+          "conversationId": {
+            "type": "string"
+          },
+          "externalTag": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}
