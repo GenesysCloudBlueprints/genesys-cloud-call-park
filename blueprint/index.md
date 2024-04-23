@@ -205,47 +205,75 @@ First import this workflow to your Genesys Cloud organization:
 
    ![Import the workflow](images/ImportWorkflow1.png "Import the workflow")
 
-11. Select the downloaded **Terminate Outbound Call Missing Queue.i3WorkFlow** file and click **Import**.
+11. Select the downloaded **Orbit - Parked Call Retrieval.i3WorkFlow** file and click **Import**.
 
 12. Review your workflow. Map the Data Actions referenced in the flow to the Data Actions with the corresponding names you imported earlier in this blueprint.  For the **Get Waiting Calls in specific Queue based on External Tag** action, make sure the value in the **holdingQueueId** parameter matches the id of the queueyour **InQueue - Orbit Call Park Hold** in-queue call flow. Click **Save** and then click **Publish**.
 ![Save your workflow](images/ImportedWorkflow1.png "Save your workflow")
 
+### Create a Queue and Call Route for parked calls
+1. From Admin Home, navigate to Contact Center>Queues and click **Create Queue**
+
+   ![Create Queue](images/CreateQueue.png "Create Queue")
+
+2. Give your Queue a name
+
+  ![Name Queue](images/NameQueue.png "Name Queue")
+
+3. Click the **Voice** tab, and define a **Calling Party Number** and **In-queue Flow** for your queue.  This will be the InQueue - Orbit Call Park Hold flow you created in the previous step.
+
+  ![Configure Queue](images/VoiceConfigQueue.png "Configure Queue")
+
+4. From Admin Home, navigate to **Routing>Call Routing** and click **+Add**
+
+  ![Create Call Route](images/CreateCallRoute.png "Create Call Route")
+
+5. Give your Call Route a name, an inbound Number and route it to the **Orbit - Parked Call Retrieval** inbound call flow you created earlier in this blueprint.
+
+  ![Configure Call Route](images/ConfigureCallRoute.png "Configure Call Route")
 
 ## Import the Script
 
 Create the trigger that invokes the created Architect workflow.
 
-1. From Admin Home, search for **Triggers** and navigate to the Triggers list.
+1. From Admin Home, search for **Scripts** and navigate to the Scripts list and click **Import**.
 
-   ![Navigate to Triggers](images/NavigateToTriggers.png "Navigate to Triggers")
+   ![Navigate to Scripts](images/NavigateToScripts.png "Navigate to Scripts")
 
-2. From the Triggers list, click **Add Trigger**
+2. Download the `Orbit Queue Transfer.script` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
 
-   ![Add Trigger](images/AddTrigger.png "Add Trigger")
+3. Select the downloaded **Orbit Queue Transfer.script** file and click **Import**.
 
-3. From the Add New Trigger modal, name your trigger and click **Add**
+   ![Import the Script](images/ImportScript.png "Import the Script")
 
-   ![Name Trigger](images/NameTrigger.png "Name Trigger")
+4. Select the downloaded **Orbit Queue Transfer.script** file and click **Import**.
 
-4. From the Trigger single view, in the **Topic Name** menu, select **v2.detail.events.conversation.{id}.user.start**.  In the **Workflow Target** menu, select **Terminate Outbound Call Missing Queue**.  Leave **Data Format** as **TopLevelPrimitives**.  Click **Add Condition**.  For more information, see [Available Topics](https://developer.genesys.cloud/notificationsalerts/notifications/available-topics "Opens the Available Topics article") in the Genesys Cloud Developer Center.  Using the notification monitoring tool in the Developer Center, you can watch the notifications happen.
+  ![Import the Script](images/ImportScript.png "Import the Script")
 
-  ![Configure Trigger](images/ConfigureTrigger.png "Configure Trigger")
+5. Open your new script and navigate to the **Actions** subtab.
 
-5. From the Trigger single view, in the **JSON Path** field, type **queueId**.  In the **Operator** menu, select **Exists**.  Set the **Value** toggle to **False**.  Click **Create**.
+  ![Configure the Script](images/ConfigureScript.png "Configure the Script")
 
-      ![Configure Trigger Criteria](images/ConfigureTriggerCriteria.png "Configure Trigger Criteria")
+6. From the **Actions** subtab, click "Update Tag and Transfer"
 
-      :::primary Note: If you are interested in allowing PBX calls to other GC users, adding the following criteria to your trigger may allow you to use the simpler `Terminate Outbound Call Missing Queue.i3WorkFlow` file for your Architect workflow.  This will reduce the amount of time between the trigger firing and the call being disconnected.  You can adjust the string in the contains condition to match your business needs.  Especially if your agents are calling specific country codes. :::
+  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")  
 
-      ![Additional Trigger Criteria](images/AdditionalTriggerCriteria.png "Additional Trigger Criteria")
+7. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
 
-6. From the Trigger single view, set the **Active** toggle to **Active**.  Click **Save**.
+  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")  
 
-     ![Activate Trigger](images/ActivateTrigger.png "Activate Trigger")
+8. Expand the **Scripter.Blind Transfer**, section.  Select the Queue where you would like to park the call.  In this example, it is the "Orbit" queue.
 
+  ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")  
+
+9. Click **Save** then **Publish** the script.
+
+10. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
+
+11.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
+
+  ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
 
 ## Additional resources
 
 * [Genesys Cloud API Explorer](https://developer.genesys.cloud/devapps/api-explorer "Opens the GC API Explorer") in the Genesys Cloud Developer Center
-* [Genesys Cloud notification triggers](https://developer.genesys.cloud/notificationsalerts/notifications/available-topics "Opens the Available topics page") in the Genesys Cloud Developer Center
-* The [terminate-voice-calls-with-no-queue repo](https://github.com/GenesysCloudBlueprints/terminate-voice-calls-with-no-queue) repository in GitHub
+* The [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) repository in GitHub
