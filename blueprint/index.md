@@ -13,7 +13,7 @@ This Genesys Cloud Developer Blueprint explains how to set up Genesys Cloud to p
 
 When an Genesys Cloud user transfers an active call to an in-queue flow with a code, the call can be retrieved from another phone, station or user using the code associated with that call.
 
-![Call Park Genesys Cloud flow](blueprint/images/outbound-communicate-call-workflow.png "Genesys Cloud Call Park")
+![Call Park Genesys Cloud flow](images/call-park-workflow.png "Genesys Cloud Call Park")
 
 The following illustration shows the end-to-end user experience that this solution enables.
 
@@ -245,31 +245,27 @@ Create the trigger that invokes the created Architect workflow.
 
    ![Import the Script](images/ImportScript.png "Import the Script")
 
-4. Select the downloaded **Orbit Queue Transfer.script** file and click **Import**.
-
-  ![Import the Script](images/ImportScript.png "Import the Script")
-
-5. Open your new script and navigate to the **Actions** subtab.
+4. Open your new script and navigate to the **Actions** subtab.
 
   ![Configure the Script](images/ConfigureScript.png "Configure the Script")
 
-6. From the **Actions** subtab, click "Update Tag and Transfer"
+5. From the **Actions** subtab, click "Update Tag and Transfer"
 
   ![Configure the Script](images/ConfigureScript2.png "Configure the Script")  
 
-7. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
+6. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
 
   ![Configure the Script](images/ConfigureScript2.png "Configure the Script")  
 
-8. Expand the **Scripter.Blind Transfer**, section.  Select the Queue where you would like to park the call.  In this example, it is the "Orbit" queue.
+7. Expand the **Scripter.Blind Transfer**, section.  Select the Queue where you would like to park the call.  In this example, it is the "Orbit" queue.
 
   ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")  
 
-9. Click **Save** then **Publish** the script.
+8. Click **Save** then **Publish** the script.
 
-10. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
+9. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
 
-11.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
+10.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
 
   ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
 
