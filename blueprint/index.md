@@ -19,6 +19,10 @@ The following illustration shows the end-to-end user experience that this soluti
 
 ![End-to-end user experience](images/CallParkingMid.gif "End-to-end user experience")
 
+:::primary
+  **Note:** This example above shows a call being retrieved from a Google Voice number.  A call can also be retrieved by a Genesys Cloud user from the Genesys Cloud platform.  A Genesys Cloud user could also consider sending the retrieval code to the desired Genesys Cloud user via a GC Collaborate Chat or SMS.  An example message could be: "you have a parked call. dial 3172222222,,,,,123 to retrieve the parked call."
+  :::
+
 ## Solution components
 
 * **Genesys Cloud** - A suite of Genesys cloud services for enterprise-grade communications, collaboration, and contact center management. Contact center agents use the Genesys Cloud user interface.
