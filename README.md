@@ -8,4 +8,4 @@ When an Genesys Cloud user transfers an active call to an in-queue flow with a c
 
 The following illustration shows the end-to-end user experience that this solution enables.
 
-![End-to-end user experience](blueprint/images/CallParking.gif "End-to-end user experience")
+![End-to-end user experience](blueprint/images/CallParkingMid.gif "End-to-end user experience")
