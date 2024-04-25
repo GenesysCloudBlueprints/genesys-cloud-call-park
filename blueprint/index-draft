@@ -255,15 +255,15 @@ Create the trigger that invokes the created Architect workflow.
 
 5. From the **Actions** subtab, click "Update Tag and Transfer"
 
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")  
+  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
 
 6. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
 
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")  
+  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
 
 7. Expand the **Scripter.Blind Transfer**, section.  Select the Queue where you would like to park the call.  In this example, it is the "Orbit" queue.
 
-  ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")  
+  ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")
 
 8. Click **Save** then **Publish** the script.
 
