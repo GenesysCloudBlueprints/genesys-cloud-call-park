@@ -1,0 +1,69 @@
+{
+  "name": "Get Waiting Calls in specific Queue based on External Tag",
+  "integrationType": "purecloud-data-actions",
+  "actionType": "custom",
+  "config": {
+    "request": {
+      "requestUrlTemplate": "/api/v2/analytics/conversations/details/query",
+      "requestType": "POST",
+      "headers": {},
+      "requestTemplate": "{\n \"interval\": \"${input.startDate}/${input.endDate}\",\n \"order\": \"asc\",\n \"orderBy\": \"conversationStart\",\n \"paging\": {\n  \"pageSize\": 25,\n  \"pageNumber\": 1\n },\n \"segmentFilters\": [\n  {\n   \"type\": \"and\",\n   \"clauses\": [\n    {\n     \"type\": \"and\",\n     \"predicates\": [\n      {\n       \"type\": \"dimension\",\n       \"dimension\": \"disconnectType\",\n       \"operator\": \"notExists\",\n       \"value\": null\n      }\n     ]\n    }\n   ],\n   \"predicates\": [\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"queueId\",\n     \"operator\": \"matches\",\n     \"value\": \"${input.holdingQueueId}\"\n    },\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"segmentType\",\n     \"operator\": \"matches\",\n     \"value\": \"interact\"\n    }\n   ]\n  }\n ],\n \"conversationFilters\": [\n  {\n   \"type\": \"and\",\n   \"predicates\": [\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"externalTag\",\n     \"operator\": \"matches\",\n     \"value\": \"${input.externalTag}\"\n    }\n   ]\n  }\n ]\n}"
+    },
+    "response": {
+      "translationMap": {
+        "participantID": "$..participants[?(@.purpose == 'acd' && @.sessions[0].flowInType == 'agent')].participantId",
+        "conversationID": "$..conversationId"
+      },
+      "translationMapDefaults": {
+        "participantID": "",
+        "conversationID": ""
+      },
+      "successTemplate": "{\"conversationID\":${conversationID},\"participantID\":${participantID}}"
+    }
+  },
+  "contract": {
+    "input": {
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "externalTag": {
+            "type": "string"
+          },
+          "holdingQueueId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "output": {
+      "successSchema": {
+        "type": "object",
+        "properties": {
+          "conversationID": {
+            "type": "array",
+            "items": {
+              "title": "ID",
+              "type": "string"
+            }
+          },
+          "participantID": {
+            "type": "array",
+            "items": {
+              "title": "ID",
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "secure": false
+}
