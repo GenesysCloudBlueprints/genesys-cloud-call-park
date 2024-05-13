@@ -190,7 +190,7 @@ First import this workflow to your Genesys Cloud organization:
 
    ![Import the workflow](images/ImportWorkflow2.png "Import the workflow")
 
-5. Select the downloaded **Terminate Outbound Call Missing Queue.i3WorkFlow** file and click **Import**.
+5. Select the downloaded **InQueue - Orbit Call Park Hold.i3InQueueFlow** file and click **Import**.
 
 6. Review your workflow. Click **Save** and then click **Publish**.
 ![Save your workflow](images/ImportedWorkflow3.png "Save your workflow")
@@ -211,8 +211,18 @@ First import this workflow to your Genesys Cloud organization:
 
 11. Select the downloaded **Orbit - Parked Call Retrieval.i3WorkFlow** file and click **Import**.
 
-12. Review your workflow. Map the Data Actions referenced in the flow to the Data Actions with the corresponding names you imported earlier in this blueprint.  For the **Get Waiting Calls in specific Queue based on External Tag** action, make sure the value in the **holdingQueueId** parameter matches the id of the queueyour **InQueue - Orbit Call Park Hold** in-queue call flow. Click **Save** and then click **Publish**.
+12. Review your workflow. Map the Data Actions referenced in the flow to the Data Actions with the corresponding names you imported earlier in this blueprint.  For the **Get Waiting Calls in specific Queue based on External Tag** action, make sure the value in the **holdingQueueId** parameter matches the id of **InQueue - Orbit Call Park Hold** in-queue call flow. Click **Save** and then click **Publish**.
 ![Save your workflow](images/ImportedWorkflow1.png "Save your workflow")
+
+### Create a Queue
+
+1. From Admin Home, navigate to Contact Center>Queues and click **Create Queue**
+
+   ![Create Queue](images/CreateQueue.png "Create Queue")
+
+2. Give your Queue a name
+
+  ![Name Queue](images/NameQueue.png "Name Queue")
 
 ## Import the Script
 
@@ -282,30 +292,26 @@ Create the trigger that invokes the created Architect workflow.
 
 8. Click **Save** then **Publish** the script.
 
-9. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
+### Add Script to Queue
 
-10.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
+1. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
+
+2.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
 
   ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
 
-### Create a Queue and Call Route for parked calls
-1. From Admin Home, navigate to Contact Center>Queues and click **Create Queue**
 
-   ![Create Queue](images/CreateQueue.png "Create Queue")
+### Create Call Route for Parked calls
 
-2. Give your Queue a name
-
-  ![Name Queue](images/NameQueue.png "Name Queue")
-
-3. Click the **Voice** tab, and define a **Calling Party Number** and **In-queue Flow** for your queue.  This will be the InQueue - Orbit Call Park Hold flow you created in the previous step.
+1. Click the **Voice** tab, and define a **Calling Party Number** and **In-queue Flow** for your queue.  This will be the InQueue - Orbit Call Park Hold flow you created in the previous step.
 
   ![Configure Queue](images/VoiceConfigQueue.png "Configure Queue")
 
-4. From Admin Home, navigate to **Routing>Call Routing** and click **+Add**
+2. From Admin Home, navigate to **Routing>Call Routing** and click **+Add**
 
   ![Create Call Route](images/CreateCallRoute.png "Create Call Route")
 
-5. Give your Call Route a name, an inbound Number and route it to the **Orbit - Parked Call Retrieval** inbound call flow you created earlier in this blueprint.
+3. Give your Call Route a name, an inbound Number and route it to the **Orbit - Parked Call Retrieval** inbound call flow you created earlier in this blueprint.
 
   ![Configure Call Route](images/ConfigureCallRoute.png "Configure Call Route")
 
