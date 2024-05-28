@@ -331,7 +331,7 @@ Create the trigger that invokes the created Architect workflow.
 
 5. From the **Actions** subtab, click "Update Tag and Transfer"
 
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
+  ![Configure the Script](images/ConfigureScript3.png "Configure the Script")
 
 6. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
 
@@ -347,37 +347,8 @@ Create the trigger that invokes the created Architect workflow.
 
 10.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
 
-  ![Configure the Script](images/UseScriptInQueue.png "Use the Script")## Import the Script
-
-Create the trigger that invokes the created Architect workflow.
-
-1. From Admin Home, search for **Scripts** and navigate to the Scripts list and click **Import**.
-
-   ![Navigate to Scripts](images/NavigateToScripts.png "Navigate to Scripts")
-
-2. Download the `Orbit Queue Transfer.script` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
-
-3. Select the downloaded **Orbit Queue Transfer.script** file and click **Import**.
-
-   ![Import the Script](images/ImportScript.png "Import the Script")
-
-4. Open your new script and navigate to the **Actions** subtab.
-
-  ![Configure the Script](images/ConfigureScript.png "Configure the Script")
-
-5. From the **Actions** subtab, click "Update Tag and Transfer"
-
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
-
-6. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
-
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
-
-7. Expand the **Scripter.Blind Transfer**, section.  Select the Queue where you would like to park the call.  In this example, it is the "Orbit" queue.
-
-  ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")
-
-8. Click **Save** then **Publish** the script.
+  ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
+  
 
 ### Add Script to Queue
 
