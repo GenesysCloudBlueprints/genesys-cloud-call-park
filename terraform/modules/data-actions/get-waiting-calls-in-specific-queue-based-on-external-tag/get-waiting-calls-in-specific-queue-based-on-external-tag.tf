@@ -29,17 +29,17 @@ resource "genesyscloud_integration_action" "action-1" {
       "conversationID" = {
         "type" = "array"
         "items" = {
-          "title" = {
-            "type" = "string"
-          }
+
+          "type" = "string"
+
         }
       },
       "participantID" = {
         "type" = "array"
         "items" = {
-          "title" = {
-            "type" = "string"
-          }
+
+          "type" = "string"
+
         }
       }
     }
@@ -51,7 +51,7 @@ resource "genesyscloud_integration_action" "action-1" {
     # See https://www.terraform.io/docs/language/expressions/strings.html#escape-sequences
     request_url_template = "/api/v2/analytics/conversations/details/query"
     request_type         = "POST"
-    request_template     = "{\n \"interval\": \"${input.startDate}/${input.endDate}\",\n \"order\": \"asc\",\n \"orderBy\": \"conversationStart\",\n \"paging\": {\n  \"pageSize\": 25,\n  \"pageNumber\": 1\n },\n \"segmentFilters\": [\n  {\n   \"type\": \"and\",\n   \"clauses\": [\n    {\n     \"type\": \"and\",\n     \"predicates\": [\n      {\n       \"type\": \"dimension\",\n       \"dimension\": \"disconnectType\",\n       \"operator\": \"notExists\",\n       \"value\": null\n      }\n     ]\n    }\n   ],\n   \"predicates\": [\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"queueId\",\n     \"operator\": \"matches\",\n     \"value\": \"${input.holdingQueueId}\"\n    },\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"segmentType\",\n     \"operator\": \"matches\",\n     \"value\": \"interact\"\n    }\n   ]\n  }\n ],\n \"conversationFilters\": [\n  {\n   \"type\": \"and\",\n   \"predicates\": [\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"externalTag\",\n     \"operator\": \"matches\",\n     \"value\": \"${input.externalTag}\"\n    }\n   ]\n  }\n ]\n}"
+    request_template     = "{\n \"interval\": \"$${input.startDate}/$${input.endDate}\",\n \"order\": \"asc\",\n \"orderBy\": \"conversationStart\",\n \"paging\": {\n  \"pageSize\": 25,\n  \"pageNumber\": 1\n },\n \"segmentFilters\": [\n  {\n   \"type\": \"and\",\n   \"clauses\": [\n    {\n     \"type\": \"and\",\n     \"predicates\": [\n      {\n       \"type\": \"dimension\",\n       \"dimension\": \"disconnectType\",\n       \"operator\": \"notExists\",\n       \"value\": null\n      }\n     ]\n    }\n   ],\n   \"predicates\": [\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"queueId\",\n     \"operator\": \"matches\",\n     \"value\": \"$${input.holdingQueueId}\"\n    },\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"segmentType\",\n     \"operator\": \"matches\",\n     \"value\": \"interact\"\n    }\n   ]\n  }\n ],\n \"conversationFilters\": [\n  {\n   \"type\": \"and\",\n   \"predicates\": [\n    {\n     \"type\": \"dimension\",\n     \"dimension\": \"externalTag\",\n     \"operator\": \"matches\",\n     \"value\": \"$${input.externalTag}\"\n    }\n   ]\n  }\n ]\n}"
     headers              = {}
   }
   config_response {
@@ -63,6 +63,6 @@ resource "genesyscloud_integration_action" "action-1" {
       participantID  = "",
       conversationID = ""
     }
-    success_template = "{\"conversationID\":${conversationID},\"participantID\":${participantID}}"
+    success_template = "{\"conversationID\":$${conversationID},\"participantID\":$${participantID}}"
   }
 }

@@ -20,11 +20,32 @@ module "data_action" {
 }
 
 /*
-  Create a Get Agent ID Data Action
+  Get Waiting Calls
 */
 module "action-1" {
   source          = "./modules/data-actions/get-waiting-calls-in-specific-queue-based-on-external-tag"
-  action_name     = "Get Agent ID"
+  action_name     = "Get Waiting Calls on Specific Queue Base on External Tag"
+  action_category = module.data_action.integration_name
+  integration_id  = module.data_action.integration_id
+}
+
+/*
+  Replace Participant With ANI
+*/
+module "action-2" {
+  source          = "./modules/data-actions/replace-participant-with-ani"
+  action_name     = "Repalce Participant with ANI"
+  action_category = module.data_action.integration_name
+  integration_id  = module.data_action.integration_id
+}
+
+
+/*
+  Replace Participant With ANI
+*/
+module "action-3" {
+  source          = "./modules/data-actions/update-external-tag-on-conversation"
+  action_name     = "Update External Tag on Conversation"
   action_category = module.data_action.integration_name
   integration_id  = module.data_action.integration_id
 }
