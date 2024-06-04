@@ -161,7 +161,7 @@ inboundCall:
                           lit:
                             minutes: 1
                         category:
-                          Orbit Data Actions OAuth Integration:
+                          {{data_action_category}}:
                             dataAction:
                               Get Waiting Calls in specific Queue based on External Tag:
                                 inputs:

@@ -50,7 +50,9 @@ module "action-3" {
   integration_id  = module.data_action.integration_id
 }
 
-
+/*
+  Default In-queue flow
+*/
 resource "genesyscloud_flow" "flow-1" {
   filepath          = "./modules/flows/in-queue-flow/default-in-queue-flow.yaml"
   file_content_hash = filesha256("./modules/flows/in-queue-flow/default-in-queue-flow.yaml")
@@ -60,10 +62,23 @@ resource "genesyscloud_flow" "flow-1" {
 
 }
 
+/*
+  In-queue flow orbit parked hold
+*/
+resource "genesyscloud_flow" "flow-2" {
+  filepath          = "./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml"
+  file_content_hash = filesha256("./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml")
+  substitutions = {
+    flow_name = "InQueue - Orbit Call Park Hold"
+  }
+
+}
+
 
 module "archy_flow" {
   source               = "./modules/flows/orbit-parked-call-retrieval"
   data_action_category = module.data_action.integration_name
+
 
 }
 
