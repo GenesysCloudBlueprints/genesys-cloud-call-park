@@ -78,6 +78,9 @@ resource "genesyscloud_flow" "flow-2" {
 module "archy_flow" {
   source               = "./modules/flows/orbit-parked-call-retrieval"
   data_action_category = module.data_action.integration_name
+  data_action_name_1   = module.action-1.action_name
+  data_action_name_2   = module.action-2.action_name
+  data_action_name_3   = module.action-3.action_name
 
 
 }

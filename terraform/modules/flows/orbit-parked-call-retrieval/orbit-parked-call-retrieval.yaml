@@ -163,7 +163,7 @@ inboundCall:
                         category:
                           {{data_action_category}}:
                             dataAction:
-                              Get Waiting Calls in specific Queue based on External Tag:
+                              {{data_action_name_1}}:
                                 inputs:
                                   startDate:
                                     exp: ToString(AddHours(GetCurrentDateTimeUtc(), -3))
@@ -189,9 +189,9 @@ inboundCall:
                                     lit:
                                       minutes: 1
                                   category:
-                                    Orbit Data Actions OAuth Integration:
+                                    {{data_action_category}}:
                                       dataAction:
-                                        Replace participant with ANI:
+                                        {{data_action_name_2}}:
                                           inputs:
                                             conversationId:
                                               exp: Flow.ConversationId[0]
