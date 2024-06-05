@@ -1,7 +1,7 @@
 /*
   Creates the action
 */
-resource "genesyscloud_integration_action" "action-1" {
+resource "genesyscloud_integration_action" "get_waiting_calls" {
   name           = var.action_name
   category       = var.action_category
   integration_id = var.integration_id

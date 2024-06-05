@@ -1,3 +1,3 @@
 output "action_name" {
-  value = genesyscloud_integration_action.action-3.name
+  value = genesyscloud_integration_action.update_external_tag_conversation.name
 }

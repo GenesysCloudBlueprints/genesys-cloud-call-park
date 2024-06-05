@@ -22,7 +22,7 @@ module "data_action" {
 /*
   Get Waiting Calls
 */
-module "action-1" {
+module "get_waiting_calls" {
   source          = "./modules/data-actions/get-waiting-calls-in-specific-queue-based-on-external-tag"
   action_name     = "Get Waiting Calls on Specific Queue Base on External Tag"
   action_category = module.data_action.integration_name
@@ -32,7 +32,7 @@ module "action-1" {
 /*
   Replace Participant With ANI
 */
-module "action-2" {
+module "replace_participant_with_ani" {
   source          = "./modules/data-actions/replace-participant-with-ani"
   action_name     = "Repalce Participant with ANI"
   action_category = module.data_action.integration_name
@@ -43,7 +43,7 @@ module "action-2" {
 /*
   Update External Tag Conversation
 */
-module "action-3" {
+module "update_external_tag_conversation" {
   source          = "./modules/data-actions/update-external-tag-on-conversation"
   action_name     = "Update External Tag on Conversation"
   action_category = module.data_action.integration_name
@@ -53,7 +53,7 @@ module "action-3" {
 /*
   Default In-queue flow
 */
-resource "genesyscloud_flow" "flow-1" {
+resource "genesyscloud_flow" "default-in-queue-flow" {
   filepath          = "./modules/flows/in-queue-flow/default-in-queue-flow.yaml"
   file_content_hash = filesha256("./modules/flows/in-queue-flow/default-in-queue-flow.yaml")
   substitutions = {
@@ -78,9 +78,9 @@ resource "genesyscloud_flow" "flow-2" {
 module "archy_flow" {
   source               = "./modules/flows/orbit-parked-call-retrieval"
   data_action_category = module.data_action.integration_name
-  data_action_name_1   = module.action-1.action_name
-  data_action_name_2   = module.action-2.action_name
-  data_action_name_3   = module.action-3.action_name
+  data_action_name_1   = module.get_waiting_calls.action_name
+  data_action_name_2   = module.replace_participant_with_ani.action_name
+  data_action_name_3   = module.update_external_tag_conversation.action_name
 
 
 }
