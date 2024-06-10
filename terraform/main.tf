@@ -34,7 +34,7 @@ module "get_waiting_calls" {
 */
 module "replace_participant_with_ani" {
   source          = "./modules/data-actions/replace-participant-with-ani"
-  action_name     = "Repalce Participant with ANI"
+  action_name     = "Replace Participant with ANI"
   action_category = module.data_action.integration_name
   integration_id  = module.data_action.integration_id
 }
@@ -63,16 +63,30 @@ resource "genesyscloud_flow" "default-in-queue-flow" {
 }
 
 /*
-  In-queue flow orbit parked hold
+  Call Park - Agent inbound Flow
 */
-resource "genesyscloud_flow" "flow-2" {
-  filepath          = "./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml"
-  file_content_hash = filesha256("./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml")
+resource "genesyscloud_flow" "call-park-agent-inbound-flow" {
+  filepath          = "./modules/flows/call-park-agent-inbound-flow/call-park-agent-inbound-flow.yaml"
+  file_content_hash = filesha256("./modules/flows/call-park-agent-inbound-flow/call-park-agent-inbound-flow.yaml")
   substitutions = {
-    flow_name = "InQueue - Orbit Call Park Hold"
+    flow_name = "Call Park - Agent inbound flow"
   }
 
 }
+
+
+
+/*
+  In-queue flow orbit parked hold
+*/
+# resource "genesyscloud_flow" "flow-2" {
+#   filepath          = "./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml"
+#   file_content_hash = filesha256("./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml")
+#   substitutions = {
+#     flow_name = "InQueue - Orbit Call Park Hold"
+#   }
+
+# }
 
 
 module "archy_flow" {
@@ -82,23 +96,20 @@ module "archy_flow" {
   data_action_name_2   = module.replace_participant_with_ani.action_name
   data_action_name_3   = module.update_external_tag_conversation.action_name
 
-
 }
 
+# # Add a Script
+# resource "genesyscloud_script" "script" {
+#   script_name       = "Schedule Callback"
+#   filepath          = "${path.module}/schedule-callback-script.json"
+#   file_content_hash = filesha256("${path.module}/schedule-callback-script.json")
+#   substitutions = {
+#     name = "Schedule Callback"
+#     # queue_id  = data.genesyscloud_routing_queue.queue.id
+#     # org_id    = var.org_id
+#   }
 
-# resource "genesyscloud_flow" "InQueue -Orbit_ Call_Park_Hold" {
-#   filepath          = "./terraform-ivr/InQueue -Orbit_ Call_Park_Hold.yaml"
-#   file_content_hash = filesha256("./terraform-ivr/InQueue -Orbit_ Call_Park_Hold.yaml")
 # }
-
-# // add queue here
-
-# resource "genesyscloud_flow" "Orbit-Parked_Call_Retrieval" {
-#   filepath          = "./terraform-ivr/Orbit-Parked_Call_Retrieval.yaml"
-#   file_content_hash = filesha256("./terraform-ivr/Orbit-Parked_Call_Retrieval.yaml")
-# }
-
-
 
 
 

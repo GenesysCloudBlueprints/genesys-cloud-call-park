@@ -221,7 +221,7 @@ Import each of data action files and associate with the Orbit Data Actions Oauth
 
 This solution includes multiple Architect flows.
 
-* The first two flows, **Call Park - Agent** and **Default In-Queue Flow**, are simple flows that are necessary for the third and final flow.
+* The first two flows, **Default In-Queue Flow** and **Call Park - Agent**, are simple flows that are necessary for the third and final flow.
 
 * The third is an inbound call flow.  The **Orbit - Parked Call Retrieval.i3InboundFlow** flow allows the parked call to be retrieved with the code stored on the External Tag on the conversation record.  It uses the two of the [data actions](#add-genesys-cloud-data-action-integrations "Goes to the Add a web services data actions integration section").
 

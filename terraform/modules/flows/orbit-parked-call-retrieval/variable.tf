@@ -18,3 +18,10 @@ variable "data_action_name_3" {
   type        = string
   description = "The Data Action name that is to be used in the Inbound Call Flow."
 }
+
+# variable "queue_id" {
+#   type        = string
+#   description = "The holding queue id "
+# }
+
+
