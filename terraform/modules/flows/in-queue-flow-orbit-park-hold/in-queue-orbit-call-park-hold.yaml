@@ -1,5 +1,5 @@
 inqueueCall:
-  name: InQueue - Orbit Call Park Hold
+  name: {{flow_name}}
   division: New Home
   defaultLanguage: en-us
   supportedLanguages:

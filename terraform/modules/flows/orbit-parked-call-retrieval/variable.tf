@@ -19,6 +19,10 @@ variable "data_action_name_3" {
   description = "The Data Action name that is to be used in the Inbound Call Flow."
 }
 
+variable "flow_name" {
+  type        = string
+  description = "Name to associate with flow"
+}
 # variable "queue_id" {
 #   type        = string
 #   description = "The holding queue id "

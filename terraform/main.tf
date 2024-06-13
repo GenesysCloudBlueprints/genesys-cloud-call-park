@@ -11,12 +11,10 @@ terraform {
   Create a Data Action integration
 */
 module "data_action" {
-  source           = "git::https://github.com/GenesysCloudDevOps/public-api-data-actions-integration-module?ref=main"
-  integration_name = "Orbit Data Actions OAuth Integration"
-  # integration_creds_client_id     = var.client_id
-  # integration_creds_client_secret = var.client_secret
-  integration_creds_client_id     = "aa77235c-d413-4349-8330-c292247c58a6"
-  integration_creds_client_secret = "2zJa-p-qcI2gLbEQDwy5y-uTWdDw0DifSk8n1h5Qr5o"
+  source                          = "git::https://github.com/GenesysCloudDevOps/public-api-data-actions-integration-module?ref=main"
+  integration_name                = "Orbit Data Actions OAuth Integration"
+  integration_creds_client_id     = var.client_id
+  integration_creds_client_secret = var.client_secret
 }
 
 /*
@@ -53,24 +51,17 @@ module "update_external_tag_conversation" {
 /*
   Default In-queue flow
 */
-resource "genesyscloud_flow" "default-in-queue-flow" {
-  filepath          = "./modules/flows/in-queue-flow/default-in-queue-flow.yaml"
-  file_content_hash = filesha256("./modules/flows/in-queue-flow/default-in-queue-flow.yaml")
-  substitutions = {
-    flow_name = "Default In-Queue Flow 1"
-  }
 
+
+module "in-queue-flow" {
+  source = "./modules/flows/in-queue-flow"
 }
 
 /*
   Call Park - Agent inbound Flow
 */
-resource "genesyscloud_flow" "call-park-agent-inbound-flow" {
-  filepath          = "./modules/flows/call-park-agent-inbound-flow/call-park-agent-inbound-flow.yaml"
-  file_content_hash = filesha256("./modules/flows/call-park-agent-inbound-flow/call-park-agent-inbound-flow.yaml")
-  substitutions = {
-    flow_name = "Call Park - Agent inbound flow"
-  }
+module "call-park-agent-inbound-flow" {
+  source = "./modules/flows/call-park-agent-inbound-flow"
 
 }
 
@@ -79,12 +70,9 @@ resource "genesyscloud_flow" "call-park-agent-inbound-flow" {
 /*
   In-queue flow orbit parked hold
 */
-resource "genesyscloud_flow" "flow-2" {
-  filepath          = "./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml"
-  file_content_hash = filesha256("./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml")
-  substitutions = {
-    flow_name = "InQueue - Orbit Call Park Hold"
-  }
+module "genesyscloud_flow" {
+  source    = "./modules/flows/in-queue-flow-orbit-park-hold"
+  flow_name = "InQueue - Orbit Call Park Hold"
 
 }
 
@@ -95,22 +83,15 @@ module "archy_flow" {
   data_action_name_1   = module.get_waiting_calls.action_name
   data_action_name_2   = module.replace_participant_with_ani.action_name
   data_action_name_3   = module.update_external_tag_conversation.action_name
+  flow_name            = "Orbit - Parked Call Retrieval"
 
 }
 
 # # Add a Script
-resource "genesyscloud_script" "script" {
-  script_name       = "Orbit Queue Transfer 1"
-  filepath          = "${path.module}/modules/script/orbit-queue-transfer.script"
-  file_content_hash = filesha256("${path.module}/modules/script/orbit-queue-transfer.script")
-  substitutions = {
-    name = "Orbit Queue Transfer"
-    # queue_id  = data.genesyscloud_routing_queue.queue.id
-    # org_id    = var.org_id
-  }
 
+module "genesyscloud_script" {
+  source = "./modules/script"
 }
-
 
 
 
