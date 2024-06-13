@@ -79,14 +79,14 @@ resource "genesyscloud_flow" "call-park-agent-inbound-flow" {
 /*
   In-queue flow orbit parked hold
 */
-# resource "genesyscloud_flow" "flow-2" {
-#   filepath          = "./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml"
-#   file_content_hash = filesha256("./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml")
-#   substitutions = {
-#     flow_name = "InQueue - Orbit Call Park Hold"
-#   }
+resource "genesyscloud_flow" "flow-2" {
+  filepath          = "./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml"
+  file_content_hash = filesha256("./modules/flows/in-queue-flow-orbit-park-hold/in-queue-orbit-call-park-hold.yaml")
+  substitutions = {
+    flow_name = "InQueue - Orbit Call Park Hold"
+  }
 
-# }
+}
 
 
 module "archy_flow" {
@@ -99,17 +99,17 @@ module "archy_flow" {
 }
 
 # # Add a Script
-# resource "genesyscloud_script" "script" {
-#   script_name       = "Schedule Callback"
-#   filepath          = "${path.module}/schedule-callback-script.json"
-#   file_content_hash = filesha256("${path.module}/schedule-callback-script.json")
-#   substitutions = {
-#     name = "Schedule Callback"
-#     # queue_id  = data.genesyscloud_routing_queue.queue.id
-#     # org_id    = var.org_id
-#   }
+resource "genesyscloud_script" "script" {
+  script_name       = "Orbit Queue Transfer 1"
+  filepath          = "${path.module}/modules/script/orbit-queue-transfer.script"
+  file_content_hash = filesha256("${path.module}/modules/script/orbit-queue-transfer.script")
+  substitutions = {
+    name = "Orbit Queue Transfer"
+    # queue_id  = data.genesyscloud_routing_queue.queue.id
+    # org_id    = var.org_id
+  }
 
-# }
+}
 
 
 
