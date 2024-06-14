@@ -172,7 +172,7 @@ inboundCall:
                                   externalTag:
                                     exp: Flow.OrbitNumber
                                   holdingQueueId:
-                                    lit: 9de579c5-74bf-45b4-9d01-234724dfb4b5
+                                    lit: {{queue_id}}
                                 successOutputs:
                                   conversationID:
                                     var: Flow.ConversationId

@@ -1,4 +1,4 @@
-resource "genesyscloud_flow" "orbit_inbound_call_flow" {
+resource "genesyscloud_flow" "orbit_parked_call_retrieval" {
   filepath          = "${path.module}/orbit-parked-call-retrieval.yaml"
   file_content_hash = filesha256("${path.module}/orbit-parked-call-retrieval.yaml")
   substitutions = {

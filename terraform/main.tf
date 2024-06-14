@@ -52,15 +52,14 @@ module "update_external_tag_conversation" {
   Default In-queue flow
 */
 
-
-module "in-queue-flow" {
-  source = "./modules/flows/in-queue-flow"
+module "default_in_queue_flow" {
+  source = "./modules/flows/default-in-queue-flow"
 }
 
 /*
   Call Park - Agent inbound Flow
 */
-module "call-park-agent-inbound-flow" {
+module "call_park_agent_inbound_flow" {
   source = "./modules/flows/call-park-agent-inbound-flow"
 
 }
@@ -70,19 +69,21 @@ module "call-park-agent-inbound-flow" {
 /*
   In-queue flow orbit parked hold
 */
-module "genesyscloud_flow" {
+module "in_queue_flow_orbit_park_hold" {
   source    = "./modules/flows/in-queue-flow-orbit-park-hold"
   flow_name = "InQueue - Orbit Call Park Hold"
+  # queue_id  = module.in_queue_flow_orbit_park_hold.flow_id
 
 }
 
 
-module "archy_flow" {
+module "orbit_parked_call_retrieval" {
   source               = "./modules/flows/orbit-parked-call-retrieval"
   data_action_category = module.data_action.integration_name
   data_action_name_1   = module.get_waiting_calls.action_name
   data_action_name_2   = module.replace_participant_with_ani.action_name
   data_action_name_3   = module.update_external_tag_conversation.action_name
+  queue_id             = module.in_queue_flow_orbit_park_hold.flow_id
   flow_name            = "Orbit - Parked Call Retrieval"
 
 }
