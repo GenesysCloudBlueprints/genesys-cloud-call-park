@@ -1,6 +1,6 @@
 inboundCall:
-  name: "Call Park Agent - Inbound Flow"
-  division: New Home
+  name: {{flow_name}}
+  division: {{division_name}}
   startUpRef: "/inboundCall/menus/menu[Main Menu_10]"
   defaultLanguage: en-us
   supportedLanguages:
@@ -117,7 +117,7 @@ inboundCall:
                 lit:
                   name: Call Park Agent Inbound Queue
               overrideInQueueFlow:
-                name: InQueue - Orbit Call Park Hold
+                name: {{in_queue_flow_name}}
               preTransferAudio:
                 tts: You have made a great choice.  We are transferring you now.
               failureTransferAudio:

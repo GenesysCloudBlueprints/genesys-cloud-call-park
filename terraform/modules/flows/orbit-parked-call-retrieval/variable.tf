@@ -27,5 +27,9 @@ variable "queue_id" {
   type        = string
   description = "The holding queue id "
 }
+variable "division_name" {
+  type        = string
+  description = "Division Name"
+}
 
 

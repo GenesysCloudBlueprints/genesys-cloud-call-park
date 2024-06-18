@@ -53,29 +53,31 @@ module "update_external_tag_conversation" {
 */
 
 module "default_in_queue_flow" {
-  source = "./modules/flows/default-in-queue-flow"
+  source        = "./modules/flows/default-in-queue-flow"
+  flow_name     = "Default In-Queue Flow"
+  division_name = var.division_name
 }
-
-/*
-  Call Park - Agent inbound Flow
-*/
-module "call_park_agent_inbound_flow" {
-  source = "./modules/flows/call-park-agent-inbound-flow"
-
-}
-
 
 
 /*
   In-queue flow orbit parked hold
 */
 module "in_queue_flow_orbit_park_hold" {
-  source    = "./modules/flows/in-queue-flow-orbit-park-hold"
-  flow_name = "InQueue - Orbit Call Park Hold"
-  queue_id  = module.in_queue_flow_orbit_park_hold.flow_id
-
+  source        = "./modules/flows/in-queue-flow-orbit-park-hold"
+  flow_name     = "InQueue - Orbit Call Park Hold"
+  division_name = var.division_name
 }
 
+/*
+  Call Park - Agent inbound Flow
+*/
+module "call_park_agent_inbound_flow" {
+  source             = "./modules/flows/call-park-agent-inbound-flow"
+  flow_name          = "Call Park Agent - Inbound Flow"
+  division_name      = var.division_name
+  in_queue_flow_name = "InQueue - Orbit Call Park Hold"
+  depends_on         = [module.in_queue_flow_orbit_park_hold]
+}
 
 module "orbit_parked_call_retrieval" {
   source               = "./modules/flows/orbit-parked-call-retrieval"
@@ -85,10 +87,12 @@ module "orbit_parked_call_retrieval" {
   data_action_name_3   = module.update_external_tag_conversation.action_name
   queue_id             = module.in_queue_flow_orbit_park_hold.flow_id
   flow_name            = "Orbit - Parked Call Retrieval"
+  depends_on           = [module.in_queue_flow_orbit_park_hold, module.data_action, module.get_waiting_calls, module.replace_participant_with_ani, module.update_external_tag_conversation]
+  division_name        = var.division_name
 
 }
 
-# # Add a Script
+# Add Script
 
 module "genesyscloud_script" {
   source = "./modules/script"

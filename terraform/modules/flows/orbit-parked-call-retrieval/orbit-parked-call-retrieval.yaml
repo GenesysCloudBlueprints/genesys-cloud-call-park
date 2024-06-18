@@ -1,6 +1,6 @@
 inboundCall:
-  name: Orbit - Parked Call Retrieval
-  division: New Home
+  name: {{flow_name}}
+  division: {{division_name}}
   startUpRef: "/inboundCall/tasks/task[New Task 1_12]"
   defaultLanguage: en-us
   supportedLanguages:

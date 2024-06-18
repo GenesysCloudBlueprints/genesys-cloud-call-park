@@ -1,6 +1,6 @@
 inqueueCall:
   name: {{flow_name}}
-  division: New Home
+  division: {{division_name}}
   defaultLanguage: en-us
   supportedLanguages:
     en-us:

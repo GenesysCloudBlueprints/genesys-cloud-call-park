@@ -1,7 +1,7 @@
 inqueueCall:
-  name: "{{flow_name}}"
+  name: {{flow_name}}
   description: This flow provides handling for calls waiting in a queue.
-  division: "New Home"
+  division: {{division_name}}
   defaultLanguage: "en-us"
   supportedLanguages:
     en-us:
