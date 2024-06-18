@@ -72,7 +72,7 @@ module "call_park_agent_inbound_flow" {
 module "in_queue_flow_orbit_park_hold" {
   source    = "./modules/flows/in-queue-flow-orbit-park-hold"
   flow_name = "InQueue - Orbit Call Park Hold"
-  # queue_id  = module.in_queue_flow_orbit_park_hold.flow_id
+  queue_id  = module.in_queue_flow_orbit_park_hold.flow_id
 
 }
 
