@@ -98,7 +98,7 @@ module "orbit_parked_call_retrieval" {
 /*
   Add Script
 */
-module "orbit_queue_transfer" {
+module "script" {
   source           = "./modules/script"
   script_name      = "Orbit Queue Transfer"
   data_action_name = module.update_external_tag_conversation.action_name
