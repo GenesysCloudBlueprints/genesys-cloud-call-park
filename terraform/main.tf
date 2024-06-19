@@ -69,7 +69,7 @@ module "in_queue_flow_orbit_park_hold" {
 }
 
 /*
-  Call Park - Agent inbound Flow
+  Call Park - Agent Inbound Flow
 */
 module "call_park_agent_inbound_flow" {
   source             = "./modules/flows/call-park-agent-inbound-flow"
@@ -79,6 +79,9 @@ module "call_park_agent_inbound_flow" {
   depends_on         = [module.in_queue_flow_orbit_park_hold]
 }
 
+/*
+  Orbit - Parked Call Retrieval
+*/
 module "orbit_parked_call_retrieval" {
   source               = "./modules/flows/orbit-parked-call-retrieval"
   data_action_category = module.data_action.integration_name
@@ -92,10 +95,16 @@ module "orbit_parked_call_retrieval" {
 
 }
 
-# Add Script
-
-module "genesyscloud_script" {
-  source = "./modules/script"
+/*
+  Add Script
+*/
+module "orbit_queue_transfer" {
+  source           = "./modules/script"
+  script_name      = "Orbit Queue Transfer"
+  data_action_name = module.update_external_tag_conversation.action_name
+  data_action_id   = module.update_external_tag_conversation.action_id
+  org_id           = var.org_id
+  depends_on       = [module.update_external_tag_conversation]
 }
 
 

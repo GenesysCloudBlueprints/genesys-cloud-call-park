@@ -1,7 +1,7 @@
 {
   "id": "5bd7aa48-6851-4ede-bbf6-1f925525ebe1",
-  "name": "{{name}}",
-  "organizationId": "e7ee8331-189c-4922-a078-74946003304d",
+  "name": "{{script_name}}",
+  "organizationId": "{{org_id}}",
   "versionId": "dd98a205-931a-433e-a23b-c5a612f3a579",
   "startPageId": "a556a442-ffc0-11e4-8df6-17ce7d092df5",
   "pages": [
@@ -1533,8 +1533,8 @@
   ],
   "customActions": [
     {
-      "id": "023f2c32-13c8-4eb1-9489-33c6a5b38086",
-      "name": "Update Tag and Transfer",
+      "id": {{data_action_id}},
+      "name": {{data_action_name}}
       "action": {
         "block": [
           {

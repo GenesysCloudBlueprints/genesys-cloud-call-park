@@ -13,3 +13,8 @@ variable "division_name" {
   description = "Division Name"
 }
 
+variable "org_id" {
+  type        = string
+  description = "Organization ID"
+}
+
