@@ -1533,8 +1533,8 @@
   ],
   "customActions": [
     {
-      "id": {{data_action_id}},
-      "name": {{data_action_name}}
+      "id": "{{data_action_id}}",
+      "name": "{{data_action_name}}",
       "action": {
         "block": [
           {
