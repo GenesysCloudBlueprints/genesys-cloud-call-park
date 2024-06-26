@@ -1,15 +1,42 @@
-# Park an active voice call with a code and retrieve it using the code
+Setups a public api integration using CX as Code and Terraform remote modules
 
-This Genesys Cloud Developer Blueprint explains how to set up Genesys Cloud to park an active voice call with a code and retrieve it using the code.
+## Usage
 
-When an Genesys Cloud user transfers an active call to an in-queue flow with a code, the call can be retrieved from another phone, station or user using the code associated with that call.
+Shown below is an example of how to configure the remote module.
 
-![Call Park Genesys Cloud flow](blueprint/images/call-park-workflow.png "Genesys Cloud Call Park")
+```hcl
+module "integration" {
+    source = "git::https://github.com/GenesysCloudDevOps/public-api-data-actions-integration-module.git?ref=v1.0.0"
 
-The following illustration shows the end-to-end user experience that this solution enables.
+    integration_name                = "GC Data Actions Integration Name"
+    integration_creds_client_id     = "<client ID>"
+    integration_creds_client_secret = "<client secret>"
+}
+```
 
-![End-to-end user experience](blueprint/images/CallParkingMid.gif "End-to-end user experience")
+## Requirements
 
-:::primary
-  **Note:** This example above shows a call being retrieved from a Google Voice number.  A call can also be retrieved by a Genesys Cloud user from the Genesys Cloud platform.  A Genesys Cloud user could also consider sending the retrieval code to the desired Genesys Cloud user via a GC Collaborate Chat or SMS.  An example message could be: "you have a parked call. dial 3172222222,,,,,123 to retrieve the parked call."
-  :::
+| Name | Version |
+|------|---------|
+| <a name="provider_terraform"></a>[terraform](https://www.terraform.io/) | >= 1.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_genesyscloud"></a> [genesyscloud](https://registry.terraform.io/providers/MyPureCloud/genesyscloud/latest) | >= 1.0|
+
+## Inputs
+
+| Name | Description | Type | Required |
+|------|-------------|------|:--------:|
+| <a name="integration_name"></a> [integration_name](#integration\_\name)  | The name for the Genesys Cloud data actions integration. | `string` | yes |
+| <a name="integration_creds_client_id"></a> [integration_creds_client_id](#integration\_\creds\_\client\_\id)  | The Genesys Cloud oauth client ID. | `string` | yes |
+| <a name="integration_creds_client_secret"></a> [integration_creds_client_secret](#integration\_\creds\_\client\_\secret)  | The Genesys Cloud oauth client secret. | `string` | yes |
+
+## Outputs
+
+| Name | Description | Type | 
+|------|-------------|------|
+| <a name="integration_id"></a> [integration_id](#integration\_\id)  | The ID of the integration. | `string` |
+| <a name="integration_name"></a> [integration_name](#integration\_\name)  | The name of the integration. | `string` | 

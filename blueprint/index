@@ -39,7 +39,24 @@ The following illustration shows the end-to-end user experience that this soluti
 * A Genesys Cloud CX 1 license. For more information, see [Genesys Cloud Pricing](https://www.genesys.com/pricing "Opens the Genesys Cloud pricing article").
 * The Master Admin role in Genesys Cloud. For more information, see [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article") in the Genesys Cloud Resource Center.
 
-## Configure Genesys Cloud
+### Development tools running in your local environment
+
+* Terraform (the latest binary). For more information, see [Install Terraform](https://www.terraform.io/downloads.html "Goes to the Install Terraform page") on the Terraform website.
+
+## Implementation steps
+
+You can implement Genesys Cloud objects manually or with Terraform.
+* [Configure Genesys Cloud using Terraform](#configure-genesys-cloud-using-terraform)
+* [Configure Genesys Cloud manually](#configure-genesys-cloud-manually)
+
+
+
+### Download the repository containing the project files
+
+Clone the [genesys-cloud-call-park repository](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park "Goes to the genesys-cloud-call-park repository") in GitHub.
+
+
+## Configure Genesys Cloud manually
 
 ### Create custom roles for use with Genesys Cloud OAuth clients
 
@@ -168,53 +185,86 @@ Import each of data action files and associate with the Orbit Data Actions Oauth
 
 ### Import the Architect workflows
 
-This solution includes two Architect flows.
+This solution includes multiple Architect flows.
 
-* The first is an inbound call flow.  The **Orbit - Parked Call Retrieval.i3InboundFlow** flow allows the parked call to be retrieved with the code stored on the External Tag on the conversation record.  It uses the two of the [data actions](#add-genesys-cloud-data-action-integrations "Goes to the Add a web services data actions integration section").
+* The first two flows, **Default In-Queue Flow** and **Call Park - Agent**, are simple flows that are necessary for the third and final flow.
 
-* The second is an in-queue call flow.  The **InQueue - Orbit Call Park Hold.i3InQueueFlow** flow plays hold music for the customer has the parked call is waiting to be retrieved.
+* The third is an inbound call flow.  The **Orbit - Parked Call Retrieval.i3InboundFlow** flow allows the parked call to be retrieved with the code stored on the External Tag on the conversation record.  It uses the two of the [data actions](#add-genesys-cloud-data-action-integrations "Goes to the Add a web services data actions integration section").
 
-First import this workflow to your Genesys Cloud organization:
+* The last flow is an in-queue call flow.  The **InQueue - Orbit Call Park Hold.i3InQueueFlow** flow plays hold music for the customer has the parked call is waiting to be retrieved.
 
-1. Download the `InQueue - Orbit Call Park Hold.i3InQueueFlow` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
 
-2. In Genesys Cloud, navigate to **Admin** > **Architect** > **Flows:In-Queue Call** and click **Add**.
+
+First import these workflows to your Genesys Cloud organization:
+
+1. Download the `Call Park - Agent Inbound Flow` and `Default In-Queue Flow` files from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
+
+2. In Genesys Cloud, navigate to **Admin** > **Architect** > **Flows: In-Queue Call** and click **Add**.
 
    ![Import the workflow](images/AddWorkflow2.png "Import the flow")
 
 3. Enter a name for the workflow and click **Create Flow**.
 
-   ![Name your workflow](images/NameWorkflow2.png "Name your flow")
+   ![Name your workflow](images/DefaultInQueueFlow.png "Name your flow")
 
 4. From the **Save** menu, click **Import**.
 
+   ![Import the workflow](images/ImportDefaultInQueueFlow.png "Import the workflow")
+
+5. Select the downloaded **Default In-Queue Flow.i3InQueueFlow** file and click **Import**.
+
+6. After importing the In-Queue flow, import the Inbound Call Flow. Proceed to **Admin** > **Architect** > **Flows: Inbound Call** and click **Add**.
+
+ ![Import the workflow](images/AddWorkflow1.png "Import the flow")
+
+7. Enter a name for the workflow and click **Create Flow**.
+
+   ![Name your workflow](images/DefaultAgentInboundFlow.png "Name your flow")
+
+8. From the **Save** menu, click **Import** then, select the downloaded **Call Park - Agent Inbound Flow.i3InQueueFlow** file and click **Import**.
+
+9. Download the `InQueue - Orbit Call Park Hold.i3InQueueFlow` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
+
+10. In Genesys Cloud, navigate to **Admin** > **Architect** > **Flows:In-Queue Call** and click **Add**.
+
+   ![Import the workflow](images/AddWorkflow2.png "Import the flow")
+
+
+11. Enter a name for the workflow and click **Create Flow**.
+
+   ![Name your workflow](images/NameWorkflow2.png "Name your flow")
+
+12. From the **Save** menu, click **Import**.
+
    ![Import the workflow](images/ImportWorkflow2.png "Import the workflow")
 
-5. Select the downloaded **Terminate Outbound Call Missing Queue.i3WorkFlow** file and click **Import**.
+13. Select the downloaded **InQueue - Orbit Call Park Hold.i3InQueueFlow** file and click **Import**.
 
-6. Review your workflow. Click **Save** and then click **Publish**.
+14. Review your workflow. Click **Save** and then click **Publish**.
 ![Save your workflow](images/ImportedWorkflow3.png "Save your workflow")
 
-7. Download the `Orbit - Parked Call Retrieval.i3InboundFlow` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
+15. Download the `Orbit - Parked Call Retrieval.i3InboundFlow` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
 
-8. In Genesys Cloud, navigate to **Admin** > **Architect** > **Flows:Inbound call** and click **Add**.
+
+16. In Genesys Cloud, navigate to **Admin** > **Architect** > **Flows:Inbound call** and click **Add**.
 
    ![Import the workflow](images/AddWorkflow1.png "Import the flow")
 
-9. Enter a name for the workflow and click **Create Flow**.
+17. Enter a name for the workflow and click **Create Flow**.
 
    ![Name your workflow](images/NameWorkflow1.png "Name your flow")
 
-10. From the **Save** menu, click **Import**.
+18. From the **Save** menu, click **Import**.
 
    ![Import the workflow](images/ImportWorkflow1.png "Import the workflow")
 
-11. Select the downloaded **Orbit - Parked Call Retrieval.i3WorkFlow** file and click **Import**.
+19. Select the downloaded **Orbit - Parked Call Retrieval.i3WorkFlow** file and click **Import**.
 
-12. Review your workflow. Map the Data Actions referenced in the flow to the Data Actions with the corresponding names you imported earlier in this blueprint.  For the **Get Waiting Calls in specific Queue based on External Tag** action, make sure the value in the **holdingQueueId** parameter matches the id of the queueyour **InQueue - Orbit Call Park Hold** in-queue call flow. Click **Save** and then click **Publish**.
+20. Review your workflow. Map the Data Actions referenced in the flow to the Data Actions with the corresponding names you imported earlier in this blueprint.  For the **Get Waiting Calls in specific Queue based on External Tag** action, make sure the value in the **holdingQueueId** parameter matches the id of **InQueue - Orbit Call Park Hold** in-queue call flow. Click **Save** and then click **Publish**.
 ![Save your workflow](images/ImportedWorkflow1.png "Save your workflow")
 
-### Create a Queue and Call Route for parked calls
+### Create Queues
+
 1. From Admin Home, navigate to Contact Center>Queues and click **Create Queue**
 
    ![Create Queue](images/CreateQueue.png "Create Queue")
@@ -223,17 +273,9 @@ First import this workflow to your Genesys Cloud organization:
 
   ![Name Queue](images/NameQueue.png "Name Queue")
 
-3. Click the **Voice** tab, and define a **Calling Party Number** and **In-queue Flow** for your queue.  This will be the InQueue - Orbit Call Park Hold flow you created in the previous step.
+  `Note: Do not forget to add your self on your created queue`
 
-  ![Configure Queue](images/VoiceConfigQueue.png "Configure Queue")
-
-4. From Admin Home, navigate to **Routing>Call Routing** and click **+Add**
-
-  ![Create Call Route](images/CreateCallRoute.png "Create Call Route")
-
-5. Give your Call Route a name, an inbound Number and route it to the **Orbit - Parked Call Retrieval** inbound call flow you created earlier in this blueprint.
-
-  ![Configure Call Route](images/ConfigureCallRoute.png "Configure Call Route")
+3. Create another queue, this time for **Call Park - Agent inbound flow** follow the same steps on step 1 and 2. Name the queue as **Call Park Agent Inbound Queue** 
 
 ## Import the Script
 
@@ -255,7 +297,7 @@ Create the trigger that invokes the created Architect workflow.
 
 5. From the **Actions** subtab, click "Update Tag and Transfer"
 
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
+  ![Configure the Script](images/ConfigureScript3.png "Configure the Script")
 
 6. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
 
@@ -272,6 +314,47 @@ Create the trigger that invokes the created Architect workflow.
 10.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
 
   ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
+  
+
+### Add Script to Queue
+
+1. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
+
+2.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
+
+  ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
+
+
+### Create Call Route for Parked calls
+
+1. Click the **Voice** tab, and define a **Calling Party Number** and **In-queue Flow** for your queue.  This will be the InQueue - Orbit Call Park Hold flow you created in the previous step.
+
+  ![Configure Queue](images/VoiceConfigQueue.png "Configure Queue")
+
+2. From Admin Home, navigate to **Routing>Call Routing** and click **+Add**
+
+  ![Create Call Route](images/CreateCallRoute.png "Create Call Route")
+
+3. Give your Call Route a name, an inbound Number and route it to the **Orbit - Parked Call Retrieval** inbound call flow you created earlier in this blueprint.
+
+  ![Configure Call Route](images/ConfigureCallRoute.png "Configure Call Route")
+
+  4. Repeat steps 1 to 3, and create another call route. Name it **Call Parking Inbound Agent Flow** this time add **Call Park - Agent Inbound Flow** to Route to. 
+  
+  ![Configure Call Route](images/CallParkingInboundAgentFlowCallRouting.png "Configure Call Route")
+
+
+
+  ### Final Steps
+
+  1. Go back to the previously created **Call Park - Agent inbound flow**. Make sure to add the **Call Park Agent Inbound Queue** to the Queue, and add **InQueue - Orbit Call Park Hold to In-Queue** to the Call Flow.
+
+     ![Configure Call Flow](images/ConfigureCallParkAgentInboundFlow.png "Configure Call Flow")
+   
+   2. Make sure to set the **holidingQueueId** same as the id of **Orbit** queue, the first queue we created earlier.  
+
+   ![Configure Call Flow](images/Orbit-ParkedCallRetrievalQueueId.png "Configure Call Flow")
+
 
 ## Additional resources
 
