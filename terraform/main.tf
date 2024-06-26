@@ -88,7 +88,7 @@ module "orbit_parked_call_retrieval" {
   data_action_name_1   = module.get_waiting_calls.action_name
   data_action_name_2   = module.replace_participant_with_ani.action_name
   data_action_name_3   = module.update_external_tag_conversation.action_name
-  queue_id             = module.in_queue_flow_orbit_park_hold.flow_id
+  queue_id             = var.queue_id
   flow_name            = "Orbit - Parked Call Retrieval"
   depends_on           = [module.in_queue_flow_orbit_park_hold, module.data_action, module.get_waiting_calls, module.replace_participant_with_ani, module.update_external_tag_conversation]
   division_name        = var.division_name
@@ -104,6 +104,7 @@ module "script" {
   data_action_name = module.update_external_tag_conversation.action_name
   data_action_id   = module.update_external_tag_conversation.action_id
   org_id           = var.org_id
+  queue_id         = var.queue_id
   depends_on       = [module.update_external_tag_conversation]
 }
 

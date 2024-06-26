@@ -55,40 +55,6 @@ You can implement Genesys Cloud objects manually or with Terraform.
 
 Clone the [genesys-cloud-call-park repository](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park "Goes to the genesys-cloud-call-park repository") in GitHub.
 
-## Configure Genesys Cloud using Terraform
-
-### Set up Genesys Cloud
-
-1. To run this project using the Terraform provider, open a Terminal window and set the following environment variables:
-
- * `GENESYSCLOUD_OAUTHCLIENT_ID` - This variable is the Genesys Cloud client credential grant Id that CX as Code executes against. 
- * `GENESYSCLOUD_OAUTHCLIENT_SECRET` - This variable is the Genesys Cloud client credential secret that CX as Code executes against. 
- * `GENESYSCLOUD_REGION` - This variable is the Genesys Cloud region in your organization.
-
-2. Run Terraform in the folder where you set the environment variables. 
-
-### Configure your Terraform build
-
-In the **blueprint/terraform/dev.auto.tfvars** file, set the following values, which are specific to your Genesys Cloud organization:
-
-!--CHANGE VALUES--!
-
-The following is an example of the **dev.auto.tfvars** file.
-
-!--CHANGE VALUES--!
-
-### Run Terraform
-
-You are now ready to run this blueprint solution for your organization.
-
-1. Change to the **/terraform** folder.
-2. Issue the following commands:
-
-* `terraform init` - This command sets up a working directory filled with Terraform configuration files. 
-
-* `terraform plan` - This command performs a test run on your Genesys Cloud organization, generating a list of all the Genesys Cloud resources it would create. Please go through this list and ensure you are satisfied with the plan before proceeding to the next step.
-
-* `terraform apply --auto-approve` - This command constructs and launches the required objects within your Genesys Cloud account. The inclusion of the `--auto-approve` flag ensures the necessary approval step is completed before the creation of the objects.
 
 ## Configure Genesys Cloud manually
 
