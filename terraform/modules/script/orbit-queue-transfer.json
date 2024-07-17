@@ -1577,7 +1577,7 @@
             "actionArgumentValues": [
               {
                 "typeName": "queue",
-                "value": "{{queue_id}}"
+                "value": "a3a7092a-f54f-429b-b809-ec8710038980"
               }
             ]
           }

@@ -8,7 +8,6 @@ resource "genesyscloud_script" "script" {
     data_action_name = var.data_action_name
     data_action_id   = var.data_action_id
     org_id           = var.org_id
-    queue_id         = var.queue_id
   }
 
 }
