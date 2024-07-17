@@ -1,5 +1,5 @@
 ---
-title: Call Parking
+title: Set Up Call Parking in Genesys Cloud
 author: yuri.yeti
 indextype: blueprint
 icon: blueprint
