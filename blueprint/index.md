@@ -277,7 +277,7 @@ First import these workflows to your Genesys Cloud organization:
 
 3. Create another queue, this time for **Call Park - Agent inbound flow** follow the same steps on step 1 and 2. Name the queue as **Call Park Agent Inbound Queue** 
 
-## Import the Script
+### Import the Script
 
 Create the trigger that invokes the created Architect workflow.
 
