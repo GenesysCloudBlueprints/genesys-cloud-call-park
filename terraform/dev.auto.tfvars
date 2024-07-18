@@ -1,5 +1,5 @@
-client_id     = "f45392e4-bafe-4aa9-af16-e2e2758186ec"
-client_secret = "o9f5CdGSs__cZ9FeSFf7MhmMiD4SLK97NSOkXxeJGBg"
+client_id     = "aa77235c-d413-4349-8330-c292247c58a6"
+client_secret = "2zJa-p-qcI2gLbEQDwy5y-uTWdDw0DifSk8n1h5Qr5o"
 division_name = "New Home"
-org_id        = "e7ee8331-189c-4922-a078-74946003304d"
+org_id        = "8d6f6281-c096-4dab-b194-a6f1667d7dd4"
 

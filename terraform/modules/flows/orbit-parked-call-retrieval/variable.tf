@@ -32,4 +32,3 @@ variable "division_name" {
   description = "Division Name"
 }
 
-

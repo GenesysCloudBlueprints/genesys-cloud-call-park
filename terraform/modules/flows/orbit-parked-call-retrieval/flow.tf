@@ -11,4 +11,3 @@ resource "genesyscloud_flow" "orbit_parked_call_retrieval" {
     queue_id             = var.queue_id
   }
 }
-
