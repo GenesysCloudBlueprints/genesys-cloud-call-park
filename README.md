@@ -1,7 +1,42 @@
-# Set Up Call Parking in Genesys Cloud
+Setups a public api integration using CX as Code and Terraform remote modules
 
-> View the full [Set Up Call Parking in Genesys Cloud](https://developer.genesys.cloud/blueprints/genesys-cloud-call-park/ "Goes to the Set Up Call Parking in Genesys Cloud Blueprint") in the Genesys Cloud Developer Center.
+## Usage
 
-This Genesys Cloud Developer Blueprint explains how to set up Genesys Cloud to park an active voice call with a code and retrieve it using the code.
+Shown below is an example of how to configure the remote module.
 
-![Overview](blueprint/images/call-park-workflow.png "Overview")
+```hcl
+module "integration" {
+    source = "git::https://github.com/GenesysCloudDevOps/public-api-data-actions-integration-module.git?ref=v1.0.0"
+
+    integration_name                = "GC Data Actions Integration Name"
+    integration_creds_client_id     = "<client ID>"
+    integration_creds_client_secret = "<client secret>"
+}
+```
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="provider_terraform"></a>[terraform](https://www.terraform.io/) | >= 1.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_genesyscloud"></a> [genesyscloud](https://registry.terraform.io/providers/MyPureCloud/genesyscloud/latest) | >= 1.0|
+
+## Inputs
+
+| Name | Description | Type | Required |
+|------|-------------|------|:--------:|
+| <a name="integration_name"></a> [integration_name](#integration\_\name)  | The name for the Genesys Cloud data actions integration. | `string` | yes |
+| <a name="integration_creds_client_id"></a> [integration_creds_client_id](#integration\_\creds\_\client\_\id)  | The Genesys Cloud oauth client ID. | `string` | yes |
+| <a name="integration_creds_client_secret"></a> [integration_creds_client_secret](#integration\_\creds\_\client\_\secret)  | The Genesys Cloud oauth client secret. | `string` | yes |
+
+## Outputs
+
+| Name | Description | Type | 
+|------|-------------|------|
+| <a name="integration_id"></a> [integration_id](#integration\_\id)  | The ID of the integration. | `string` |
+| <a name="integration_name"></a> [integration_name](#integration\_\name)  | The name of the integration. | `string` | 

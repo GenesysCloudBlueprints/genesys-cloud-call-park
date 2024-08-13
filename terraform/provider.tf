@@ -3,9 +3,9 @@ provider "genesyscloud" {
   # oauthclient_secret = "8eaeXnZHN1skj-Lx90KNPpEVMNdW_Mzh9pDsE-U84fs"
   # aws_region         = "us-west-2"
 
-  oauthclient_id     = "aa77235c-d413-4349-8330-c292247c58a6"
-  oauthclient_secret = "2zJa-p-qcI2gLbEQDwy5y-uTWdDw0DifSk8n1h5Qr5o"
-  aws_region         = "us-west-2"
+  oauthclient_id     = "f45392e4-bafe-4aa9-af16-e2e2758186ec"
+  oauthclient_secret = "o9f5CdGSs__cZ9FeSFf7MhmMiD4SLK97NSOkXxeJGBg"
+  aws_region         = "us-east-1"
 
   sdk_debug = true
 }
