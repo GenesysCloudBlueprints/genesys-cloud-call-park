@@ -40,26 +40,77 @@ The following illustration shows the end-to-end user experience that this soluti
 ### Specialized knowledge
 
 * Administrator-level knowledge of Genesys Cloud
+* Experience with Terraform
 
 ### Genesys Cloud account
 
-* A Genesys Cloud CX 1 license. For more information, see [Genesys Cloud Pricing](https://www.genesys.com/pricing "Opens the Genesys Cloud pricing article").
-* The Master Admin role in Genesys Cloud. For more information, see [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article") in the Genesys Cloud Resource Center.
+* A Genesys Cloud license. For more information, see [Genesys Cloud Pricing](https://www.genesys.com/pricing "Opens the Genesys Cloud pricing page") in the Genesys website.
+* The Master Admin role. For more information, see [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article") in the Genesys Cloud Resource Center.
+* CX as Code. For more information, see [CX as Code](https://developer.genesys.cloud/devapps/cx-as-code/ "Goes to the CX as Code page") in the Genesys Cloud Developer Center.
 
 ### Development tools running in your local environment
 
 * Terraform (the latest binary). For more information, see [Install Terraform](https://www.terraform.io/downloads.html "Goes to the Install Terraform page") on the Terraform website.
 
+
 ## Implementation steps
 
 You can implement Genesys Cloud objects manually.
 * [Configure Genesys Cloud manually](#configure-genesys-cloud-manually)
+* [Run Terraform](#run-terraform)
 
 
+
+## Run Terraform
 
 ### Download the repository containing the project files
 
 Clone the [genesys-cloud-call-park repository](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park "Goes to the genesys-cloud-call-park repository") in GitHub.
+
+### Set up Genesys Cloud
+
+1. You need to set the following environment variables in a terminal window before you can run this project using the Terraform provider:
+
+ * `GENESYSCLOUD_OAUTHCLIENT_ID` - This variable is the Genesys Cloud client credential grant Id that CX as Code executes against. 
+ * `GENESYSCLOUD_OAUTHCLIENT_SECRET` - This variable is the Genesys Cloud client credential secret that CX as Code executes against. 
+ * `GENESYSCLOUD_REGION` - This variable is the Genesys Cloud region in your organization.
+
+2. Set the environment variables in the folder where Terraform is running. 
+
+### Configure your Terraform build
+
+Set the following values in the **blueprint/terraform/dev.auto.tfvars** file, specific to your Genesys Cloud organization:
+
+* `client_id` - The value of your OAuth Client ID using Client Credentials to be used for the data action integration.
+* `client_secret`- The value of your OAuth Client secret using Client Credentials to be used for the data action integration.
+
+The following is an example of the dev.auto.tfvars file.
+
+```
+client_id       = "your-client-id"
+client_secret   = "your-client-secret"
+```
+
+### Run Terraform
+
+The blueprint solution is now ready for your organization to use. 
+
+1. Change to the **/terraform** folder and issue the following commands:
+
+* `terraform init` - This command initializes a working directory containing Terraform configuration files.
+  
+* `terraform plan` - This command executes a trial run against your Genesys Cloud organization and displays a list of all the Genesys Cloud resources created. Review this list and ensure that you are comfortable with the plan before moving on to the next step.
+
+* `terraform apply --auto-approve` - This command creates and deploys the necessary objects in your Genesys Cloud account. The --auto-approve flag completes the required approval step before the command creates the objects.
+
+Once the `terraform apply --auto-approve` command has completed, you should see the output of the entire run along with the number of objects that Terraform successfully created. The following points should be remembered:
+
+* In this project, assume you are running using a local Terraform backing state. In this case, the `tfstate` files are created in the same folder where the project is running. It is not recommended to use local Terraform backing state files unless you are running from a desktop or are comfortable deleting files.
+
+* As long as you keep your local Terraform backing state projects, you can tear down this blueprint solution by changing to the `docs/terraform` folder. You can also issue a `terraform destroy --auto-approve` command. All objects currently managed by the local Terraform backing state are destroyed by this command.
+### Development tools running in your local environment
+
+* Terraform (the latest binary). For more information, see [Install Terraform](https://www.terraform.io/downloads.html "Goes to the Install Terraform page") on the Terraform website.
 
 
 ## Configure Genesys Cloud manually
