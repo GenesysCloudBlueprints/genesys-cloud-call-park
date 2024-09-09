@@ -22,7 +22,7 @@ module "data_action" {
 */
 module "get_waiting_calls" {
   source          = "./modules/data-actions/get-waiting-calls-in-specific-queue-based-on-external-tag"
-  action_name     = "Get Waiting Calls on Specific Queue Base on External Tag"
+  action_name     = "Get Waiting Calls on Specific Queue Base on External Tag - CX"
   action_category = module.data_action.integration_name
   integration_id  = module.data_action.integration_id
 }
@@ -32,7 +32,7 @@ module "get_waiting_calls" {
 */
 module "replace_participant_with_ani" {
   source          = "./modules/data-actions/replace-participant-with-ani"
-  action_name     = "Replace Participant with ANI"
+  action_name     = "Replace Participant with ANI - CX"
   action_category = module.data_action.integration_name
   integration_id  = module.data_action.integration_id
 }
@@ -43,7 +43,7 @@ module "replace_participant_with_ani" {
 */
 module "update_external_tag_conversation" {
   source          = "./modules/data-actions/update-external-tag-on-conversation"
-  action_name     = "Update External Tag on Conversation"
+  action_name     = "Update External Tag on Conversation - CX"
   action_category = module.data_action.integration_name
   integration_id  = module.data_action.integration_id
 }
@@ -53,7 +53,7 @@ module "update_external_tag_conversation" {
 */
 
 module "default_in_queue_flow" {
-  source        = "./modules/flows/default-in-queue-flow"
+  source        = "./modules/flows/default-in-queue-flow - CX"
   flow_name     = "Default In-Queue Flow"
   division_name = var.division_name
 }
@@ -64,7 +64,7 @@ module "default_in_queue_flow" {
 */
 module "in_queue_flow_orbit_park_hold" {
   source        = "./modules/flows/in-queue-flow-orbit-park-hold"
-  flow_name     = "InQueue - Orbit Call Park Hold"
+  flow_name     = "InQueue - Orbit Call Park Hold - CX"
   division_name = var.division_name
 }
 
@@ -73,9 +73,9 @@ module "in_queue_flow_orbit_park_hold" {
 */
 module "call_park_agent_inbound_flow" {
   source             = "./modules/flows/call-park-agent-inbound-flow"
-  flow_name          = "Call Park Agent - Inbound Flow"
+  flow_name          = "Call Park Agent - Inbound Flow - CX"
   division_name      = var.division_name
-  in_queue_flow_name = "InQueue - Orbit Call Park Hold"
+  in_queue_flow_name = "InQueue - Orbit Call Park Hold - CX"
   depends_on         = [module.in_queue_flow_orbit_park_hold]
 }
 
@@ -89,7 +89,7 @@ module "orbit_parked_call_retrieval" {
   data_action_name_2   = module.replace_participant_with_ani.action_name
   data_action_name_3   = module.update_external_tag_conversation.action_name
   queue_id             = module.in_queue_flow_orbit_park_hold.flow_id
-  flow_name            = "Orbit - Parked Call Retrieval"
+  flow_name            = "Orbit - Parked Call Retrieval - CX"
   depends_on           = [module.in_queue_flow_orbit_park_hold, module.data_action, module.get_waiting_calls, module.replace_participant_with_ani, module.update_external_tag_conversation]
   division_name        = var.division_name
 
