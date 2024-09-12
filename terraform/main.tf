@@ -7,6 +7,7 @@ terraform {
   }
 }
 
+
 /*
   Create a Data Action integration
 */
@@ -53,8 +54,8 @@ module "update_external_tag_conversation" {
 */
 
 module "default_in_queue_flow" {
-  source        = "./modules/flows/default-in-queue-flow - CX"
-  flow_name     = "Default In-Queue Flow"
+  source        = "./modules/flows/default-in-queue-flow"
+  flow_name     = "Default In-Queue Flow - CX"
   division_name = var.division_name
 }
 
@@ -100,7 +101,7 @@ module "orbit_parked_call_retrieval" {
 */
 module "script" {
   source           = "./modules/script"
-  script_name      = "Orbit Queue Transfer"
+  script_name      = "Orbit Queue Transfer - CX"
   data_action_name = module.update_external_tag_conversation.action_name
   data_action_id   = module.update_external_tag_conversation.action_id
   org_id           = var.org_id
