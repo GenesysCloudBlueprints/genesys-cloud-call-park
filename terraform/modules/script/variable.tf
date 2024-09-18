@@ -17,3 +17,8 @@ variable "org_id" {
   type        = string
   description = "Organization ID"
 }
+
+variable "queue_id" {
+  type        = string
+  description = "Queue ID"
+}

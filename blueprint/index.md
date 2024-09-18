@@ -368,9 +368,6 @@ Create the trigger that invokes the created Architect workflow.
 
 9. From Admin Home, search for **Queues** and navigate to the Queues list.  Click any inbound Queue you would like your agents to be able to park calls from.
 
-10.  From the queue record, click the **Voice** tab and select this script as the default script for the queue.  Click **Save**
-
-  ![Configure the Script](images/UseScriptInQueue.png "Use the Script")
   
 
 ### Add Script to Queue
