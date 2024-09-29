@@ -13,3 +13,8 @@ variable "in_queue_flow_name" {
   type        = string
   description = "In-Queue flow name"
 }
+
+variable "queue_id" {
+  type        = string
+  description = "Queue ID"
+}
