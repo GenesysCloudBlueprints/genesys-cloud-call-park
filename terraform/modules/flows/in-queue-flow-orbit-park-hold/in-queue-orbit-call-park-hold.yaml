@@ -62,7 +62,7 @@ inqueueCall:
     - playAudio:
         name: Play Audio
         audio:
-          prompt: Prompt.PleaseHoldAsYourCallsRetrieved
+          tts: Please hold as your call is retrieved
     - playAudio:
         name: Play Audio
         audio:
@@ -70,4 +70,4 @@ inqueueCall:
     - playAudio:
         name: Play Audio
         audio:
-          prompt: Prompt.PleaseHoldAsYourCallsRetrieved
+          tts: Please hold as your call is retrieved
