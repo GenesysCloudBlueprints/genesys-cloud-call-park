@@ -8,8 +8,8 @@ inboundCall:
       defaultLanguageSkill:
         noValue: true
       textToSpeech:
-        Genesys Enhanced TTS:
-          voice: en-US-DavisNeural
+        defaultEngine:
+          voice: Jill
   initialGreeting:
     tts: Hi, Please enter the orbit number you'd like to be connected to.
   variables:
