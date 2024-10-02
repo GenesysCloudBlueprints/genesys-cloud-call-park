@@ -18,3 +18,8 @@ variable "org_id" {
   description = "Organization ID"
 }
 
+variable "email" {
+  type        = string
+  description = "Your user email"
+}
+
