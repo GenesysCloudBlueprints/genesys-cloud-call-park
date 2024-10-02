@@ -115,7 +115,7 @@ inboundCall:
               globalSpeechRecTerms: false
               targetQueue:
                 lit:
-                  name: Call Park Agent Inbound Queue
+                  name: {{queue_name}}
               overrideInQueueFlow:
                 name: {{in_queue_flow_name}}
               preTransferAudio:

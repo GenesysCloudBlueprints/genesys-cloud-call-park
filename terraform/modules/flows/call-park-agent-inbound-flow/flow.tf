@@ -5,6 +5,7 @@ resource "genesyscloud_flow" "call_park_agent_inbound_flow" {
     flow_name          = var.flow_name
     division_name      = var.division_name
     in_queue_flow_name = var.in_queue_flow_name
+    queue_name         = var.queue_name
 
   }
 
