@@ -234,11 +234,11 @@ Import each of data action files and associate with the Orbit Data Actions Oauth
 
 8. In Genesys Cloud, navigate to **Integrations** > **Actions** and click **Import**.
 
-  ![Import the data action](images/4AImportDataActions.png "Import the data action")
+   ![Import the data action](images/4AImportDataActions.png "Import the data action")
 
 9. Select the `Update-External-Tag-on-Conversation.custom.json` file and associate with the [Orbit Data Actions Oauth Integration](#add-genesys-cloud-data-action-integrations "Goes to the Add Genesys Cloud data action integrations section") integration, and then click **Import Action**.
 
-  ![Import the Update External Tag on Conversation data action](images/4BImportUpdateExternalTagOnConversationDataAction.png "Import the Update External Tag on Conversation data action")
+   ![Import the Update External Tag on Conversation data action](images/4BImportUpdateExternalTagOnConversationDataAction.png "Import the Update External Tag on Conversation data action")
 
 ### Import the Architect workflows
 
@@ -269,10 +269,10 @@ First import these workflows to your Genesys Cloud organization:
    ![Import the workflow](images/ImportDefaultInQueueFlow.png "Import the workflow")
 
 5. Select the downloaded **Default In-Queue Flow.i3InQueueFlow** file and click **Import**.
-
+S
 6. After importing the In-Queue flow, import the Inbound Call Flow. Proceed to **Admin** > **Architect** > **Flows: Inbound Call** and click **Add**.
 
- ![Import the workflow](images/AddWorkflow1.png "Import the flow")
+   ![Import the workflow](images/AddWorkflow1.png "Import the flow")
 
 7. Enter a name for the workflow and click **Create Flow**.
 
@@ -298,7 +298,7 @@ First import these workflows to your Genesys Cloud organization:
 13. Select the downloaded **InQueue - Orbit Call Park Hold.i3InQueueFlow** file and click **Import**.
 
 14. Review your workflow. Click **Save** and then click **Publish**.
-![Save your workflow](images/ImportedWorkflow3.png "Save your workflow")
+   ![Save your workflow](images/ImportedWorkflow3.png "Save your workflow")
 
 15. Download the `Orbit - Parked Call Retrieval.i3InboundFlow` file from the [genesys-cloud-call-park repo](https://github.com/GenesysCloudBlueprints/genesys-cloud-call-park) GitHub repository.
 
@@ -318,7 +318,7 @@ First import these workflows to your Genesys Cloud organization:
 19. Select the downloaded **Orbit - Parked Call Retrieval.i3WorkFlow** file and click **Import**.
 
 20. Review your workflow. Map the Data Actions referenced in the flow to the Data Actions with the corresponding names you imported earlier in this blueprint.  For the **Get Waiting Calls in specific Queue based on External Tag** action, make sure the value in the **holdingQueueId** parameter matches the id of **InQueue - Orbit Call Park Hold** in-queue call flow. Click **Save** and then click **Publish**.
-![Save your workflow](images/ImportedWorkflow1.png "Save your workflow")
+   ![Save your workflow](images/ImportedWorkflow1.png "Save your workflow")
 
 ### Create Queues
 
@@ -328,7 +328,7 @@ First import these workflows to your Genesys Cloud organization:
 
 2. Give your Queue a name
 
-  ![Name Queue](images/NameQueue.png "Name Queue")
+   ![Name Queue](images/NameQueue.png "Name Queue")
 
   `Note: Do not forget to add your self on your created queue`
 
@@ -354,15 +354,15 @@ Create the trigger that invokes the created Architect workflow.
 
 5. From the **Actions** subtab, click "Update Tag and Transfer"
 
-  ![Configure the Script](images/ConfigureScript3.png "Configure the Script")
+   ![Configure the Script](images/ConfigureScript3.png "Configure the Script")
 
 6. Expand the **Data Actions.Execute Data Action**, section.  Select the category (or data action integration) for your data action, then select the **Update External Tag on Conversation** data action from **Data Action** drop menu.  Expand the input section and map the script variables to the data action inputs.
 
-  ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
+   ![Configure the Script](images/ConfigureScript2.png "Configure the Script")
 
 7. Expand the **Scripter.Blind Transfer**, section.  Select the Queue where you would like to park the call.  In this example, it is the "Orbit" queue.
 
-  ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")
+   ![Configure the Script](images/SelectBlindTransferQueue.png "Configure the Script")
 
 8. Click **Save** then **Publish** the script.
 
@@ -400,7 +400,7 @@ Create the trigger that invokes the created Architect workflow.
 
   1. Go back to the previously created **Call Park - Agent inbound flow**. Make sure to add the **Call Park Agent Inbound Queue** to the Queue, and add **InQueue - Orbit Call Park Hold to In-Queue** to the Call Flow.
 
-     ![Configure Call Flow](images/ConfigureCallParkAgentInboundFlow.png "Configure Call Flow")
+   ![Configure Call Flow](images/ConfigureCallParkAgentInboundFlow.png "Configure Call Flow")
    
    2. Make sure to set the **holidingQueueId** same as the id of **Orbit** queue, the first queue we created earlier.  
 
