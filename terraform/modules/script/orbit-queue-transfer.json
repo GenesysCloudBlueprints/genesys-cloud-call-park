@@ -8,9 +8,7 @@
     {
       "id": "a556a442-ffc0-11e4-8df6-17ce7d092df5",
       "name": "Start Page",
-      "organizationId": "e7ee8331-189c-4922-a078-74946003304d",
-      "scriptId": "5bd7aa48-6851-4ede-bbf6-1f925525ebe1",
-      "versionId": "dd98a205-931a-433e-a23b-c5a612f3a579",
+      "organizationId": "{{org_id}}",
       "properties": {
         "onLoadAction": {
           "typeName": "action",
@@ -859,6 +857,10 @@
                       "visible": {
                         "typeName": "variable"
                       },
+                      "preserveLayoutLocation": {
+                        "typeName": "boolean",
+                        "value": false
+                      },
                       "text": {
                         "typeName": "interpolatedText",
                         "value": "{{scripter.queueName}}"
@@ -931,6 +933,10 @@
                   },
                   "visible": {
                     "typeName": "variable"
+                  },
+                  "preserveLayoutLocation": {
+                    "typeName": "boolean",
+                    "value": false
                   },
                   "backgroundColor": {
                     "typeName": "null"
@@ -1007,6 +1013,10 @@
                       "visible": {
                         "typeName": "variable"
                       },
+                      "preserveLayoutLocation": {
+                        "typeName": "boolean",
+                        "value": false
+                      },
                       "text": {
                         "typeName": "interpolatedText",
                         "value": "Customer's Number:"
@@ -1078,6 +1088,10 @@
                       "visible": {
                         "typeName": "variable"
                       },
+                      "preserveLayoutLocation": {
+                        "typeName": "boolean",
+                        "value": false
+                      },
                       "text": {
                         "typeName": "interpolatedText",
                         "value": "{{scripter.customersFormattedNumber}}"
@@ -1147,6 +1161,10 @@
                   "visible": {
                     "typeName": "variable"
                   },
+                  "preserveLayoutLocation": {
+                    "typeName": "boolean",
+                    "value": false
+                  },
                   "backgroundColor": {
                     "typeName": "null"
                   },
@@ -1202,6 +1220,10 @@
               },
               "visible": {
                 "typeName": "variable"
+              },
+              "preserveLayoutLocation": {
+                "typeName": "boolean",
+                "value": false
               },
               "text": {
                 "typeName": "interpolatedText",
@@ -1274,6 +1296,10 @@
               "visible": {
                 "typeName": "variable"
               },
+              "preserveLayoutLocation": {
+                "typeName": "boolean",
+                "value": false
+              },
               "placeholderText": {
                 "typeName": "interpolatedText",
                 "value": ""
@@ -1341,6 +1367,10 @@
               "visible": {
                 "typeName": "variable"
               },
+              "preserveLayoutLocation": {
+                "typeName": "boolean",
+                "value": false
+              },
               "text": {
                 "typeName": "interpolatedText",
                 "value": "Transfer"
@@ -1348,9 +1378,8 @@
               "clickAction": {
                 "typeName": "action",
                 "value": {
-                  "actionName": "023f2c32-13c8-4eb1-9489-33c6a5b38086",
-                  "actionArgumentValues": []
-                }
+                  "actionName": "{{data_action_id}}"
+               }
               },
               "backgroundColor": {
                 "typeName": "color",
@@ -1490,6 +1519,14 @@
       }
     }
   },
+  "workItems": {
+    "properties": {
+      "enabled": {
+        "typeName": "boolean",
+        "value": false
+      }
+    }
+  },
   "variables": [
     {
       "id": "f59cde71-8328-4ef6-ade0-8b98f535aa97",
@@ -1544,7 +1581,7 @@
               {
                 "typeName": "bridgeActionArguments",
                 "value": {
-                  "actionName": "custom_-_2cec6971-01ca-4693-b35a-c1740b92ed25",
+                  "actionName": "custom_-_95b1734a-c0f0-4fc6-b499-0daf1579fed4",
                   "inputProperty": {
                     "typeName": "objectFields",
                     "value": {

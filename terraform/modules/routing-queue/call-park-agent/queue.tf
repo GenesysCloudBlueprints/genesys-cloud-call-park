@@ -1,4 +1,4 @@
-resource "genesyscloud_routing_queue" "queue_orbit" {
+resource "genesyscloud_routing_queue" "queue_call_park_agent" {
   name                     = var.queue_name
   description              = var.description
   acw_wrapup_prompt        = "MANDATORY_TIMEOUT"

@@ -13,3 +13,4 @@ variable "classifier_queue_members" {
   type        = list(string)
   description = "A list of member ids you want added to each queue."
 }
+

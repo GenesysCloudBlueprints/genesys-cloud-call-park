@@ -22,3 +22,8 @@ variable "queue_id" {
   type        = string
   description = "Queue ID"
 }
+
+variable "action_name" {
+  type        = string
+  description = "Action name to associate with script"
+}
