@@ -26,7 +26,7 @@ resource "genesyscloud_integration_action" "replace_participant_with_ani" {
   config_request {
     request_url_template = "/api/v2/conversations/$${input.conversationId}/participants/$${input.participantId}/replace"
     request_type         = "POST"
-    request_template     = ""
+    request_template     = "{\n  \"address\": \"$${input.address}\",\n\"transferType\": \"Attended\"\n}"
     headers = {
       Cache-Control = "no-cache"
       Content-Type  = "application/json"
@@ -36,6 +36,6 @@ resource "genesyscloud_integration_action" "replace_participant_with_ani" {
   config_response {
     translation_map          = {}
     translation_map_defaults = {}
-    success_template         = "$${rawResult}"
+    success_template         = "{rawResult}"
   }
 }
